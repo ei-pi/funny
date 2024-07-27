@@ -1,3 +1,6 @@
+import { ObservablePoint, type PointData } from "pixi.js";
+import { GameSprite } from "./sprite.js";
+
 export enum UnitType {
     Tank,
     Archer,
@@ -13,7 +16,7 @@ export enum Variant {
 type Builder<T extends UnitType, V extends Variant> = {
     type<T2 extends UnitType>(type: T2): Builder<T2, V>;
     variant<V2 extends Variant>(variant: V2): Builder<T, V2>;
-    build(): { readonly type: T, readonly variant: V; };
+    build(): Unit;
 };
 
 export const makeUnit = () => {
@@ -37,11 +40,44 @@ export const makeUnit = () => {
             throw new Error("Error creating unit: no type given");
         }
 
-        return {
-            type,
-            variant
-        };
+        return new Unit(type, variant);
     };
 
     return obj as Builder<UnitType, Variant.Normal>;
 };
+
+export class Unit {
+    readonly sprite: GameSprite;
+
+    private _pos: ObservablePoint;
+    get pos(): ObservablePoint { return this._pos; }
+
+    vel: PointData;
+
+    private _destroyed = false;
+    get destroyed() { return this._destroyed; }
+
+    constructor(
+        readonly type: UnitType,
+        readonly variant: Variant,
+        pos: PointData = { x: 0, y: 0 }
+    ) {
+        this.sprite = new GameSprite(`${UnitType[type].toLowerCase()}_${Variant[variant].toLowerCase()}`);
+        this._pos = this.sprite._position;
+        this.vel = { x: 0, y: 0 };
+    }
+
+    update() {
+        this._pos.set(
+            this._pos.x + this.vel.x,
+            this._pos.y + this.vel.y
+        );
+
+        this.sprite.setVPos(this._pos);
+    }
+
+    destroy() {
+        this._destroyed = true;
+        this.sprite.destroy();
+    }
+}

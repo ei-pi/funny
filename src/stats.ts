@@ -1,13 +1,13 @@
-import { UnitType, Variant } from "./classes";
+import { UnitType, Variant } from "./classes.js";
 
-export interface Unit {
+export interface UnitStats {
     readonly health: number;
     readonly attack: number;
     readonly cooldown: number; // <- ms
     readonly speed: number;
 }
 
-export const SCHEMA: Readonly<Record<UnitType, Readonly<Record<Variant, Unit>>>> = Object.freeze({
+export const SCHEMA: Readonly<Record<UnitType, Readonly<Record<Variant, UnitStats>>>> = Object.freeze({
     [UnitType.Tank]: {
         [Variant.Mini]: {
             health: 200,
