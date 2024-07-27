@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "removeComments": true,
+        "sourceMap": true,
+        "moduleResolution": "node",
+        "strict": true,
+        "alwaysStrict": true,
+        "module": "ESNext",
+        "esModuleInterop": true,
+        "disableSizeLimit": true
+    },
+    "buildOptions": {
+        "verbose": true
+    },
+    "exclude": [
+        "./node_modules"
+    ]
+}

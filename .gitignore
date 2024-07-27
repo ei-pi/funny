@@ -1,0 +1,22 @@
+# Build
+dist/
+
+# Node
+node_modules/
+
+# IDE garbage
+.idea
+.DS_Store
+.vscode
+*.kate-swp
+.history
+
+# try to prevent damienvesper moments from happening
+.cache/
+.pnpm-cache/
+.npm/
+*.log
+
+*.js
+*.js.map
+!pixi.min.js

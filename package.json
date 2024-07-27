@@ -1,0 +1,16 @@
+{
+    "name": "funny",
+    "description": "",
+    "main": "src/index.js",
+    "type": "module",
+    "private": true,
+    "license": "GPL-3.0",
+    "scripts": {
+        "build": "tsc"
+    },
+    "devDependencies": {
+        "@types/node": "^20.14.10",
+        "typescript": "^5.5.3",
+        "pixi.js": "^8.2.5"
+    }
+}
