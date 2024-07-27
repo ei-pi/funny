@@ -7,8 +7,6 @@ await app.init({
     background: 0x000000,
     antialias: true,
     autoDensity: true,
-    preferWebGLVersion: 2,
-    preference: "webgpu",
     resolution: window.devicePixelRatio,
     hello: true,
     eventFeatures: {
@@ -20,4 +18,4 @@ await app.init({
 });
 document.body.querySelector("p")?.replaceWith(app.canvas);
 
-export {}
+export { };
