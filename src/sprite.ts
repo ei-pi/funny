@@ -67,8 +67,18 @@ export class GameSprite extends Sprite {
         return this;
     }
 
-    setScale(scale = 1): this {
-        this.scale = { x: scale, y: scale };
+    setScale(scale: number | PointData = 1): this {
+        this.scale = typeof scale === "number" ? { x: scale, y: scale } : { ...scale };
+        return this;
+    }
+
+    setScaleX(scaleX = 1): this {
+        this.scale = { x: scaleX, y: this.scale.y };
+        return this;
+    }
+
+    setScaleY(scaleY = 1): this {
+        this.scale = { x: this.scale.x, y: scaleY };
         return this;
     }
 
